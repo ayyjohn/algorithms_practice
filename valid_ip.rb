@@ -8,5 +8,7 @@
 # n.n.n.n pattern with a quick regex.
 
 def valid_ip?(string)
-  return false unless /\d{1,3}\.\d{1,3}\.\d{1,3}.\.\d{1,3}/.match(string).length > 1
+  return false unless string =~ /^\d+(\.\d+){3}$/
+  nums = string.split('.').map(&:to_i)
+  nums.all? { |num| num >= 0 && num <= 255 }
 end
