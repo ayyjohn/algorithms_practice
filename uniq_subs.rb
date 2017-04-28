@@ -41,7 +41,7 @@ def unique_substrings(string)
     end
   end
 
-  substrings
+  substrings.to_a
 end
 
 p unique_substrings('cat')
