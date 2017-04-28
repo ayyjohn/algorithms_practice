@@ -26,3 +26,20 @@ end
 p unique_substrings('cat')
 p unique_substrings('aaaa')
 p unique_substrings('hello')
+
+# better implementation, same time complexity but using a set
+# in ruby to achieve slightly better readability
+
+require 'set'
+
+def unique_substrings(string)
+  substrings = Set.new
+
+  string.length.times do |i|
+    (i...string.length).each do |j|
+      substrings.add(string[i..j])
+    end
+  end
+
+  substrings
+end
