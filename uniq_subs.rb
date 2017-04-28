@@ -43,3 +43,7 @@ def unique_substrings(string)
 
   substrings
 end
+
+p unique_substrings('cat')
+p unique_substrings('aaaa')
+p unique_substrings('hello')
