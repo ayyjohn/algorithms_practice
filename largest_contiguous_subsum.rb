@@ -23,7 +23,8 @@ puts largest_contiguous_subsum([1, 2, 3])
 puts largest_contiguous_subsum([])
 puts largest_contiguous_subsum([-1, -2, -3])
 puts largest_contiguous_subsum([8, 9, -7, -50, 19, 1, -2])
-
+puts largest_contiguous_subsum([-1, -9, -2, -8, -1])
+puts ''
 # More optimized solution: keep a running max sum as you iterate through
 # the array. If at any point it becomes negative, you've hit the
 # maximum value for what you were iterating over, and you should
