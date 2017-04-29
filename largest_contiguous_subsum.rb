@@ -31,9 +31,8 @@ puts ''
 # reset the sum to 0.
 
 def largest_contiguous_subsum(array)
-  return 0 if array.empty?
   sum = 0
-  max = -Float::INFINITY
+  max = array.first || 0
   array.each do |el|
     sum += el
     max = sum if sum > max
@@ -48,3 +47,8 @@ puts largest_contiguous_subsum([-1, -2, -3])
 puts largest_contiguous_subsum([8, 9, -7, -50, 19, 1, -2])
 puts largest_contiguous_subsum([-1, -9, -2, -8, -1])
 
+# Recursive solution: say that for an array of n elements you know:
+# the largest contiguous subsum AND
+# the largest contiguous subsum ending at the last of n elements.
+# Now, say that you extend the n elements with another n + 1th element. How does
+# the subsum change?
