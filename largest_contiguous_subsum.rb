@@ -46,4 +46,35 @@ puts largest_contiguous_subsum([])
 puts largest_contiguous_subsum([-1, -2, -3])
 puts largest_contiguous_subsum([8, 9, -7, -50, 19, 1, -2])
 puts largest_contiguous_subsum([-1, -9, -2, -8, -1])
+puts ''
+# Recursive solution: say that for an array of n elements you know:
+# the largest contiguous subsum AND
+# the largest contiguous subsum ending at the last of n elements.
+# Now, say that you extend the n elements with another n + 1th element. How does
+# the subsum change?
+
+def largest_contiguous_subsum(array)
+  return 0 if array.empty?
+  return array.max if array.all? { |el| el < 0 }
+  lcs_helper(array)[:best_sum]
+end
+
+def lcs_helper(array)
+  if array.empty?
+    return { best_sum: 0, best_suffix_sum: 0 }
+  end
+
+  result = lcs_helper(array.drop(1))
+  old_best_sum, old_best_suffix_sum = result[:best_sum], result[:best_suffix_sum]
+  new_best_suffix_sum = [old_best_suffix_sum + array.first, array.first].max
+  new_best_sum = [old_best_sum, new_best_suffix_sum].max
+
+  { best_sum: new_best_sum, best_suffix_sum: new_best_suffix_sum }
+end
+
+puts largest_contiguous_subsum([1, 2, 3])
+puts largest_contiguous_subsum([])
+puts largest_contiguous_subsum([-1, -2, -3])
+puts largest_contiguous_subsum([8, 9, -7, -50, 19, 1, -2])
+puts largest_contiguous_subsum([-1, -9, -2, -8, -1])
 
