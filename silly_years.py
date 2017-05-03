@@ -42,3 +42,31 @@ print(silly_years(2306))
 # iterate up subsequent centuries to see if any of them have a silly year.
 # A century tells us a and b, from which we can derive c and d, and if both c and d
 # are between 0 and 9 then abcd is a silly year.
+
+def silly_years(year):
+    years = []
+    digits = [ int(x) for x in str(year) ]
+
+    while len(years) < 10:
+        first_digit = digits[0]
+        second_digit = digits[1]
+        third_digit = -1 - first_digit + second_digit
+        fourth_digit = 9 - first_digit
+
+        digits = [first_digit, second_digit, third_digit, fourth_digit]
+
+        if all(0 <= digit <= 9 for digit in digits):
+            current_silly_year = int(''.join([str(i) for i in digits]))
+
+            if current_silly_year > year:
+                years.append(current_silly_year)
+
+        digits[1] += 1
+
+        if digits[1] >= 10:
+            digits[1] -= 10
+            digits[0] += 1
+
+    return years
+print(silly_years(1977))
+print(silly_years(2306))
